@@ -41,7 +41,7 @@ Habit Forge is a habit tracking web application built with NodeJS, Express, Expr
 
 ## Folder Structure
 
- HABIT-TRACKER
+HABIT-TRACKER
 ├── .env
 ├── env.variables.js
 ├── index.js
