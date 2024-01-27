@@ -85,7 +85,7 @@ export default class HabitController {
       else
         return res
           .status(404)
-          .render("404Page", { errorMsg: "No habits found, add some!" });
+          .render("404page", { errorMsg: "No habits found, add some!" });
     } catch (err) {
       next(err); //pass the error to the errorHandler
     }
@@ -229,7 +229,7 @@ export default class HabitController {
     try {
       //Handle undefined body
       if (!req.body)
-        return res.status(404).render("404page.ejs", {
+        return res.status(404).render("404page", {
           errorMsg: "The request body is undefined!",
         });
 
@@ -239,7 +239,7 @@ export default class HabitController {
 
       //Validations
       if (!habitId || isNewDate === undefined || !action || !actionDate)
-        return res.status(404).render("404page.ejs", {
+        return res.status(404).render("404page", {
           errorMsg: "Bad request!",
         });
 
