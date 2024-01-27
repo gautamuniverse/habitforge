@@ -1,0 +1,237 @@
+<div class="row" style="font-weight: 600; display: flex">
+  <div
+    class="col-1"
+    style="background-color: red; width: max-content; height: 20px"
+  >
+    Not Done
+  </div>
+  <div
+    class="col-1"
+    style="background-color: #868686; width: max-content; height: 20px"
+  >
+    No Action
+  </div>
+  <div
+    class="col-1"
+    style="
+      border-bottom-right-radius: 0.3rem;
+      background-color: green;
+      width: max-content;
+      height: 20px;
+    "
+  >
+    Done
+  </div>
+</div>
+
+<div class="page-heading" style="text-align: center">
+  <span><h2><%= month %></h2></span>
+  <span class="text-danger" style="font-style: italic"
+    ><h5><%= presentDay +", "+presentDate %></h5></span
+  >
+</div>
+<div class="text-center">
+  <% if(typeof data !== 'String') { %> <% data.forEach((i) => { %>
+  <div class="weekly-habit-details row">
+    <div class="habit-title col">
+      <h5><%= i.habitTitle %></h5>
+    </div>
+    <div class="weekly-days-done col">
+      <span>
+        <strong
+          >Total Days: <%= i && i.actions.length>0?i.actions.filter((j) => j && j.action === "Done").length:0 %></strong
+        >
+      </span>
+    </div>
+    <div class="weekly-timing col">
+      <span><strong>Timing: <%= i.timing %> </strong> </span>
+    </div>
+  </div>
+  <div class="weekly-row-container">
+   
+    <div class="row weekly-habit-row">
+      <% let k = 0; let totalDays=0; let dateCounter = weekStartDate; while(k++<7) { %>
+      <!-- if the current date has become last date i.e 31/30/29/28 then refresh date to 1  -->
+      <% if(dateCounter > new Date(year, monthNumber + 1, 0).getDate()) { %> 
+        <%dateCounter = 1; %> <% } %>
+
+        <script>
+           "<% var color = 'transparent'; var foundDoc = i.actions.find((m) => m && new Date(m.date).toISOString().split('T')[0] === new Date(year, monthNumber, dateCounter+1).toISOString().split('T')[0]); if(foundDoc) {const action = foundDoc.action; if(action === 'Not Done') {color = 'red';} else if(action === 'Done') {color = 'green';}}%>"
+            
+           
+       </script>
+      <div
+        class="col border weekly-col btn"
+        id='col-btn<%=dateCounter%><%=i.habitTitle%>'
+        habit-action-id="<%= foundDoc?foundDoc._id:null %>"
+        habit-id="<%= i._id %>"
+        habit-action-date="<%= foundDoc?foundDoc.date:new Date(year, monthNumber, dateCounter+1) %>"
+        habit-action="<%= foundDoc?foundDoc.action:null %>"
+        style="background-color: <%= color %>;"
+      > 
+        <%= dateCounter++ %>
+      </div>
+      <% } %>
+    </div>
+  </div>
+
+  <% }) %> 
+  <% } %>
+</div>
+
+<script>
+   document.addEventListener("DOMContentLoaded", function () {
+    let z = 0;
+    let y = "<%= weekStartDate %>"
+    const startFrom = y;
+
+    let totalDays = "<%= totalHabits %>"
+    totalDays = parseInt(totalDays) * 7;  //Because we are showing for one week
+    y = parseInt(y);
+    let habitNames = [];
+    "<% data.forEach((i) => { %>"
+    habitNames.push("<%= i.habitTitle %>") 
+   "<% }) %>"
+    let habitNumber = 0;
+    while (z++ < totalDays) {
+      let month = "<%= monthNumber + 1 %>";
+      if (y > new Date("<%= year %>", month, 0).getDate()) {
+        y = 1;
+      }
+      if(y.toString() === "<%= presentDate + 1%>"){
+        y = startFrom;
+        habitNumber++;
+      } 
+      //get the column buttons by
+      const colBtn = document.getElementById(`col-btn${y}${habitNames[habitNumber]}`);
+     y++;
+      // get current background color
+      const currentColor = window.getComputedStyle(colBtn).backgroundColor;
+
+      colBtn.addEventListener("click", () => {
+        const habitAction = colBtn.getAttribute('habit-action');
+          //rgba(0, 0, 0, 0) for transparent, rgb(0, 128, 0) for green and rgb(255, 0, 0) for red
+        //If the col-btn is in no action then clicking on it will mark it as Done
+        if(currentColor === "rgba(0, 0, 0, 0)" && (habitAction === 'None' || !habitAction))
+        {  
+            //Mark it as done, and change the background color to green
+            const habitId = colBtn.getAttribute('habit-id');
+            const habitActionDate = colBtn.getAttribute('habit-action-date');
+
+            const body = { isNewDate: true,
+                action: "Done",
+                actionDate: habitActionDate
+            };
+            const urlEncodedData = new URLSearchParams(body).toString();
+
+            setTimeout(function() {
+                window.location.reload();
+            }, 100);
+
+            // Make a PUT request to the server using fetch API
+            fetch("/habits/week/"+habitId, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: urlEncodedData,
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.success) {
+                showSuccessAlert("Habit updated successfully!");
+                } else {
+                showErrorAlert("Something went wrong, please try again later!");
+                }
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+                showErrorAlert("An error occurred while submitting the form.");
+            });
+
+            
+        }
+        //Green
+        else if (currentColor === "rgb(0, 128, 0)")
+        {   
+            //We will mark it as Not Done and change bg color to Red
+            const habitId = colBtn.getAttribute('habit-id');
+            const habitActionId = colBtn.getAttribute('habit-action-id');
+            const habitActionDate = colBtn.getAttribute('habit-action-date');
+            
+            const body = { isNewDate: false,
+                action: "Not Done",
+                actionId: habitActionId,
+                actionDate: habitActionDate                
+            };
+
+            const urlEncodedData = new URLSearchParams(body).toString();
+
+            // Make a PUT request to the server using fetch API
+            fetch("/habits/week/"+habitId, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: urlEncodedData,
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.success) {
+                showSuccessAlert("Habit updated successfully!");
+                } else {
+                showErrorAlert("Something went wrong, please try again later!");
+                }
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+                showErrorAlert("An error occurred while submitting the form.");
+            });
+
+            window.location.reload();
+        }
+        //Red, not done
+        else
+        {   
+            
+            //We will mark it as No action and change bg color to transparent
+            const habitId = colBtn.getAttribute('habit-id');
+            const habitActionId = colBtn.getAttribute('habit-action-id');
+            const habitActionDate = colBtn.getAttribute('habit-action-date');
+            
+            const body = { isNewDate: false,
+                action: "None",
+                actionId: habitActionId,
+                actionDate: habitActionDate                
+            };
+
+            const urlEncodedData = new URLSearchParams(body).toString();
+
+            // Make a PUT request to the server using fetch API
+            fetch("/habits/week/"+habitId, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: urlEncodedData,
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.success) {
+                showSuccessAlert("Habit updated successfully!");
+                } else {
+                showErrorAlert("Something went wrong, please try again later!");
+                }
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+                showErrorAlert("An error occurred while submitting the form.");
+            });
+
+            window.location.reload();
+        }
+
+      });
+    }
+  });
+</script>

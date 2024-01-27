@@ -1,0 +1,74 @@
+<!-- Display all Habits on the homepage -->
+<div class="page-heading" style="text-align: center">
+  <h2>Habit Forge</h2>
+  <p class="text-white" style="font-style: italic">
+    Daily Habits, Lasting Results
+  </p>
+  <p></p>
+</div>
+
+<!-- Check if deleteMsg exists and is not undefined -->
+<!-- using this script for showing delete result -->
+<% if (typeof deleteMsg !== 'undefined') { %>
+<script>
+  alert("<%= deleteMsg %>");
+  window.location.replace("http://localhost:3200");
+</script>
+<% } else { %>
+
+<div class="row row-cols-1 row-cols-md-2 g-4 mt-3">
+  <% if (result.success) { %> <% result.msg.forEach((i) => { %>
+  <div class="col">
+    <div
+      class="card h-100 homepage-cardbody-container"
+      style="border-color: black"
+    >
+      <div class="card-body">
+        <h5
+          class="card-title text-center text-decoration-underline"
+          style="padding-bottom: 10px"
+        >
+          <%= i.habitTitle %>
+        </h5>
+        <div class="homepage-btn-container">
+          <!-- <a href="/habits/<%= i._id %>" class="btn btn-primary homepage-btns"
+            >View</a
+          > -->
+          <a
+            href="/habits/update-habit/<%= i._id %>"
+            class="btn btn-primary homepage-btns"
+            >View/Update</a
+          >
+          <a
+            href="/habits/delete/<%= i._id %>"
+            class="btn btn-primary homepage-btns"
+            id="deleteHabit"
+            >Delete</a
+          >
+        </div>
+
+        <div class="homepage-habit-details">
+          <div class="days-done">
+            <span>
+              <strong>Days: </strong> <%= i && i.actions.length>0?i.actions.filter((j) => j && j.action === "Done").length:0 %>
+            </span>
+          </div>
+          <div class="timing">
+            <span><strong>Timing:</strong> <%= i.timing %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% }) %> <% } else { %>
+    <div class="text-center" style="color: white; width: 100%;">
+        <h4 style="margin-top: 15%">
+            Please add few habits, they will appear here.
+        </h4>
+        <a class="btn text-center homepage-btns text-white" href="http://localhost:3200/habits/add-habit">Add new Habit</a>
+    </div>
+
+    <%  }  %>
+</div>
+
+<% } %>

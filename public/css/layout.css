@@ -1,0 +1,163 @@
+body{
+    background-color: #d1d1d1;
+    overflow: hidden;
+}
+
+
+/* ----Navbar---- */
+.navbar{
+    background-color: #a0a0a0 !important;
+    background-color: #110221;
+    border-bottom-color: rgba(0, 0, 0, 0.09);
+    border-bottom-style: solid;
+    border-width: 1px;
+    box-shadow: 0px 0px 10px 0px rgb(47, 47, 47);
+    position: sticky;
+}
+
+.navbar-collapse{
+    /* background-color: #bababa8e; */
+    margin-top: 5px;
+    border-radius: 0.2rem; 
+}
+
+.nav-link{
+    transition: color 0.5s ease !important;
+    font-weight: 500;
+    font-size: medium;
+    letter-spacing: -0.5px;
+    word-spacing: -0.5px;
+}
+
+.nav-link:hover{
+    color:#0300bb !important;
+    overflow: hidden;
+}
+
+/* -----Container----- */
+
+.container{
+    margin-top: 5px;
+    background: linear-gradient(to bottom, black, rgb(65, 65, 65));
+    width: 100vw;
+    height: 89vh;
+    border-radius: 0.3rem;
+    margin-bottom: 5px;
+    box-shadow: 0px 0px 20px 0px rgb(47, 47, 47);
+    /* Hide the scrollbar */
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.page-heading h2{
+  padding-top: 10px;
+  color: white;
+  text-decoration: underline;
+}
+
+
+ /* ---- Add Habit Page ---- */
+
+.addhabit-form{
+    color: white;
+    display: flex;
+    height:90%;
+    justify-content: center;
+    align-items: center;
+}
+
+.addhabit-form form{
+    width: 60%;
+    font-size: large;
+    display: flex;
+    flex-direction: column;
+}
+
+.addhabit-form button{
+    background-color: #30368c;
+    border-color: #272d8b;
+}
+
+.addhabit-form button:hover{
+    background-color: #3c4185;
+    border-color: #272d8b;
+}
+
+.addhabit-form form input{
+    color: black;
+    background-color: #d1d1d1;
+}
+
+
+/* ----- Homepage ----- */
+.homepage-btns{
+    background-color: #303289; 
+    border-color: #27298b;
+}
+
+.homepage-btn-container{
+    display: flex; 
+    column-gap: 10px; 
+    justify-content: center;
+}
+
+.homepage-btns:hover{
+    background-color: #4b4c87;
+}
+
+.homepage-cardbody-container{
+    background-image: radial-gradient(circle, #e7e7e7, #e1e1e1, #dbdbdb, #d6d6d6, #d0d0d0, #c8c8c8, #c0c0c0, #b8b8b8, #ababab, #9f9f9f, #929292, #868686);
+    border-color: rgb(55, 55, 55) !important;
+    border-width: 1px !important;
+    caret-color: transparent;
+}
+
+.homepage-habit-details{
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 30px;
+}
+
+
+/* ------Weekly View----- */
+
+.weekly-habit-details{
+    margin-top: 30px;
+    display: flex;
+    margin-bottom: 5px;
+    align-items: baseline;
+    color: white;
+}
+
+.weekly-row-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.weekly-habit-row{
+    background-color: #868686;
+    width: 95%;
+}
+
+.weekly-col{
+    
+    border: 1px solid #000000 !important;
+    z-index: 1000;
+    color: black;
+    border-radius: 0px;
+    transition: all 0.5s ease;
+}
+
+.weekly-col:hover{
+    background-color: rgb(203, 203, 203) !important;
+}
+
+.days-container{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}

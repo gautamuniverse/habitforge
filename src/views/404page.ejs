@@ -1,0 +1,25 @@
+<div class="text-center" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+  <% if( errorMsg ) { %>
+  <div class="error-container">
+    <div class="error-title text-danger" style="font-size: xx-large;"><strong>404! </strong></div>
+    <div class="error-description text-white">Oops! <%= errorMsg %></div>
+    <p style="color: white">
+      The page you are looking for might be in another universe.
+    </p>
+    <a href="/" class="error-button"
+      >Go back to Home <i class="fa-solid fa-house"></i
+    ></a>
+  </div>
+  <% } else { %>
+  <div class="error-container">
+    <div class="error-title text-danger"  style="font-size: xx-large;"><strong>404!</strong></div>
+    <div class="error-description text-white">Oops! Page Not Found!</div>
+    <p style="color: white">
+      The page you are looking for might be in another universe.
+    </p>
+    <a href="/" class="error-button"
+      >Go back to Home <i class="fa-solid fa-house"></i
+    ></a>
+  </div>
+  <% } %>
+</div>

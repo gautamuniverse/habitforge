@@ -1,0 +1,169 @@
+<!-- Check if deleteMsg exists and is not undefined -->
+<!-- using this script for showing delete result -->
+<!-- <% if (typeof updateMsg !== 'undefined') { %>
+    <script>
+      alert("<%= updateMsg %>");
+    </script>
+    <% } %> -->
+
+<div class="page-heading" style="text-align: center">
+  <h2>View and Update Habit Details</h2>
+</div>
+
+<div class="addhabit-form">
+  <form
+    action="/habits/<%= data._id %>"
+    method="put"
+    enctype="application/x-www-form-urlencoded"
+    onsubmit="submitForm(event)"
+  >
+    <div class="mb-3">
+      <label for="habitTitle" class="form-label">Habit Title</label>
+      <input
+        type="text"
+        name="habitTitle"
+        class="form-control"
+        id="habitTitle"
+        aria-describedby="habitTitle"
+        value="<%= data.habitTitle %>"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="timing" class="form-label">Timing</label>
+      <input
+        type="time"
+        name="timing"
+        class="form-control"
+        id="timing"
+        value="<%= data.timing %>"
+        required
+      />
+    </div>
+
+    <div class="mb-3" style="position: relative">
+      <label for="dates" class="form-label" id="selected-dates"
+        >Select Dates:
+      </label>
+
+      <div
+        class="row"
+        style="
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-evenly;
+          align-items: center;
+          max-width: 100%;
+          row-gap: 10px;
+        "
+      >
+        <div class="col">
+          <input type="date" name="dates" class="form-control" id="dates"/>
+        </div>
+        <span style="font-size: small; ">To remove a date, re-enter the date in the input field.</span>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+<script>
+  var selectedDates;
+  window.onload = function () {
+    var dateControl = document.querySelectorAll('input[type="date"]');
+    var customDate = new Date();
+    var date = new Date(
+      customDate.getFullYear(),
+      customDate.getMonth(),
+      customDate.getDate() + 1
+    );
+    var lastWeek = new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate() - 6
+    );
+
+    selectedDates = "<%= dates %>" ? "<%= dates %>" : [];
+    //If the selectedDates coming from the server exists, then we will prefill the selected dates array and display on the view
+
+    if (selectedDates.length > 0) {
+      selectedDates = selectedDates.split(",");
+      document.getElementById("selected-dates").textContent =
+        "Marked as Done: " + selectedDates.filter(element => element !== '').join(", ");
+    }
+
+    dateControl.forEach((i) => {
+      i.max = date.toISOString().substring(0, 10);
+      i.min = lastWeek.toISOString().substring(0, 10);
+    });
+
+    dateControl.forEach((i) => {
+      i.addEventListener("change", function () {
+        clearTimeout(this.timeout);
+        this.timeout = setTimeout(function () {
+          if (selectedDates.includes(i.value)) {
+            alert("This date has been removed!");
+            selectedDates.splice(
+              selectedDates.findIndex((element) => element == i.value),
+              1
+            );
+            
+            document.getElementById("selected-dates").textContent =
+              "Marked as Done: " + selectedDates.filter(element => element !== '').join(", ");
+            i.value = "";
+          } else {
+            selectedDates.push(i.value);
+            document.getElementById("selected-dates").textContent =
+              "Makred as Done: " + selectedDates.filter(element => element !== '').join(", ");
+          }
+        }, 950);
+      });
+    });
+  };
+
+  function submitForm(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Get form data
+    const formData = new FormData(event.target);
+
+    //append the selected Dates array in the formData
+    selectedDates.forEach((date, index) => {
+      formData.append(`datesArray[${index}]`, date);
+    });
+
+    // Convert FormData to URL-encoded format
+    const urlEncodedData = new URLSearchParams(formData).toString();
+    // Make a PUT request to the server using fetch API
+    fetch("/habits/<%= data._id %>", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: urlEncodedData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          showSuccessAlert("Habit updated successfully!");
+        } else {
+          showErrorAlert("Something went wrong, please try again later!");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        showErrorAlert("An error occurred while submitting the form.");
+      });
+  }
+
+  function showSuccessAlert(message) {
+    alert("Success: " + message);
+    window.location.reload();
+  }
+
+  function showErrorAlert(message) {
+    alert("Error: " + message);
+    window.location.reload();
+  }
+</script>
