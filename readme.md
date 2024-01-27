@@ -74,6 +74,10 @@ HABIT-TRACKER
 │&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;      ├── updateHabit.ejs<br>
 │&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;      └── weekly.ejs<br>
 
+## Live Website
+
+[Habit Forge](https://habit-forge-habit-tracker-web-application.onrender.com)
+
 ## Getting Started
 
 To get started with Habit Forge:
