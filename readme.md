@@ -78,7 +78,7 @@ HABIT-TRACKER
 
 To get started with Habit Forge:
 
-1. Clone the repository: `git clone [Habit Forge](https://github.com/gautamuniverse/habitforge/)`
+1. Clone the repository: `git clone https://github.com/gautamuniverse/habitforge/`
 2. Install dependencies: `npm install`
 3. Start the server: `npm start`
 4. Open your browser and navigate to `http://localhost:3200`
