@@ -47,6 +47,7 @@ body{
     /* Hide the scrollbar */
     overflow-y: scroll;
     scrollbar-width: none !important;
+    -ms-overflow-style: none;
 }
 
 .page-heading h2{
