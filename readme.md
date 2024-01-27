@@ -41,45 +41,38 @@ Habit Forge is a habit tracking web application built with NodeJS, Express, Expr
 
 ## Folder Structure
 
-HABIT-TRACKER
-│   .env
-│   env.variables.js   
-│   index.js    
-│   package-lock.json
-│   package.json    
-└───node_modules
-└───public
-    └───css
-    │       layout.css 
-    │   
-    └───logo 
-            favicon.ico 
-            output_image.png (Website logo)
-└───src  
-    │   config  
-    │       mongoose.db.js  
-    │   
-    └───controller  
-    │       habits.controller.js  
-    │   
-    └───middlewares  
-    │       errorpage.middleware.js    
-    │   
-    └───model  
-    │       habits.repository.js    
-    │       habits.schema.js      
-    │   
-    └─routes     
-    │       habits.routes.js     
-    └────views     
-            404page.ejs      
-            addHabit.ejs      
-            homepage.ejs      
-            layout.ejs        
-            updateHabit.ejs       
-            weekly.ejs
-   
-
+ HABIT-TRACKER
+├── .env
+├── env.variables.js
+├── index.js
+├── package-lock.json
+├── package.json
+├── node_modules
+├── public
+│   ├── css
+│   │   └── layout.css
+│   └── logo
+│       ├── favicon.ico
+│       └── output_image.png (Website logo)
+├── src
+│   ├── config
+│   │   └── mongoose.db.js
+│   ├── controller
+│   │   └── habits.controller.js
+│   ├── middlewares
+│   │   └── errorpage.middleware.js
+│   ├── model
+│   │   ├── habits.repository.js
+│   │   └── habits.schema.js
+│   ├── routes
+│   │   └── habits.routes.js
+│   └── views   
+│       ├── 404page.ejs
+│       ├── addHabit.ejs
+│       ├── homepage.ejs
+│       ├── layout.ejs
+│       ├── updateHabit.ejs
+│       └── weekly.ejs
 
 ## Getting Started
 
