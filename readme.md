@@ -42,37 +42,37 @@ Habit Forge is a habit tracking web application built with NodeJS, Express, Expr
 ## Folder Structure
 
 HABIT-TRACKER
-├── .env
-├── env.variables.js
-├── index.js
-├── package-lock.json
-├── package.json
-├── node_modules
-├── public 
-│   ├── css
-│   │   └── layout.css
-│   └── logo
-│       ├── favicon.ico
-│       └── output_image.png (Website logo)
-├── src
-│   ├── config
-│   │   └── mongoose.db.js
-│   ├── controller
-│   │   └── habits.controller.js
-│   ├── middlewares
-│   │   └── errorpage.middleware.js
-│   ├── model
-│   │   ├── habits.repository.js
-│   │   └── habits.schema.js
-│   ├── routes
-│   │   └── habits.routes.js
-│   └── views   
-│       ├── 404page.ejs
-│       ├── addHabit.ejs
-│       ├── homepage.ejs
-│       ├── layout.ejs
-│       ├── updateHabit.ejs
-│       └── weekly.ejs
+├── .env<br>
+├── env.variables.js<br>
+├── index.js<br>
+├── package-lock.json<br>
+├── package.json<br>
+├── node_modules<br>
+├── public <br>
+│   ├── css<br>
+│   │   └── layout.css<br>
+│   └── logo<br>
+│       ├── favicon.ico<br>
+│       └── output_image.png (Website logo)<br>
+├── src<br>
+│   ├── config<br>
+│   │   └── mongoose.db.js<br>
+│   ├── controller<br>
+│   │   └── habits.controller.js<br>
+│   ├── middlewares<br>
+│   │   └── errorpage.middleware.js<br>
+│   ├── model<br>
+│   │   ├── habits.repository.js<br>
+│   │   └── habits.schema.js<br>
+│   ├── routes<br>
+│   │   └── habits.routes.js<br>
+│   └── views<br>
+│       ├── 404page.ejs<br>
+│       ├── addHabit.ejs<br>
+│       ├── homepage.ejs<br>
+│       ├── layout.ejs<br>
+│       ├── updateHabit.ejs<br>
+│       └── weekly.ejs<br>
 
 ## Getting Started
 
