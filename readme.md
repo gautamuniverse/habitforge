@@ -49,30 +49,30 @@ HABIT-TRACKER
 ├── package.json<br>
 ├── node_modules<br>
 ├── public <br>
-│   ├── css<br>
-│   │   └── layout.css<br>
-│   └── logo<br>
-│       ├── favicon.ico<br>
-│       └── output_image.png (Website logo)<br>
+│ &nbsp; &nbsp; &nbsp; ├── css<br>
+│ &nbsp; &nbsp; &nbsp;  │   └── layout.css<br>
+│ &nbsp; &nbsp; &nbsp;  └── logo<br>
+│ &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;   ├── favicon.ico<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; └── output_image.png (Website logo)<br>
 ├── src<br>
-│   ├── config<br>
-│   │   └── mongoose.db.js<br>
-│   ├── controller<br>
-│   │   └── habits.controller.js<br>
-│   ├── middlewares<br>
-│   │   └── errorpage.middleware.js<br>
-│   ├── model<br>
-│   │   ├── habits.repository.js<br>
-│   │   └── habits.schema.js<br>
-│   ├── routes<br>
-│   │   └── habits.routes.js<br>
-│   └── views<br>
-│       ├── 404page.ejs<br>
-│       ├── addHabit.ejs<br>
-│       ├── homepage.ejs<br>
-│       ├── layout.ejs<br>
-│       ├── updateHabit.ejs<br>
-│       └── weekly.ejs<br>
+│ &nbsp; &nbsp; &nbsp;  ├── config<br>
+│ &nbsp; &nbsp; &nbsp;  │   └── mongoose.db.js<br>
+│&nbsp; &nbsp; &nbsp;   ├── controller<br>
+│ &nbsp; &nbsp; &nbsp;  │   └── habits.controller.js<br>
+│&nbsp; &nbsp; &nbsp;   ├── middlewares<br>
+│ &nbsp; &nbsp; &nbsp;  │   └── errorpage.middleware.js<br>
+│&nbsp; &nbsp; &nbsp;   ├── model<br>
+│  &nbsp; &nbsp; &nbsp; │   ├── habits.repository.js<br>
+│  &nbsp; &nbsp; &nbsp; │   └── habits.schema.js<br>
+│ &nbsp; &nbsp; &nbsp;  ├── routes<br>
+│  &nbsp; &nbsp; &nbsp; │   └── habits.routes.js<br>
+│&nbsp; &nbsp; &nbsp;   └── views<br>
+│&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;       ├── 404page.ejs<br>
+│    &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;   ├── addHabit.ejs<br>
+│&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;       ├── homepage.ejs<br>
+│ &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;      ├── layout.ejs<br>
+│ &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;      ├── updateHabit.ejs<br>
+│ &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;      └── weekly.ejs<br>
 
 ## Getting Started
 
