@@ -48,7 +48,7 @@ HABIT-TRACKER
 ├── package-lock.json
 ├── package.json
 ├── node_modules
-├── public
+├── public 
 │   ├── css
 │   │   └── layout.css
 │   └── logo
