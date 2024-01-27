@@ -77,7 +77,8 @@ HABIT-TRACKER
             homepage.ejs      
             layout.ejs        
             updateHabit.ejs       
-            weekly.ejs   
+            weekly.ejs
+   
 
 
 ## Getting Started
