@@ -66,7 +66,7 @@ export default class HabitController {
       let weekStartDate = new Date();
       weekStartDate.setDate(weekStartDate.getDate() - 7);
       const weekStartDayName = days[weekStartDate.getDay()];
-      weekStartDate = new Date(weekStartDate).getDate() + 1;
+      weekStartDate = new Date(new Date(weekStartDate).getDate() + 1).getDate();
 
       //Get all the habits
       const result = await this.habitRepository.getAllHabits();
