@@ -62,11 +62,21 @@ export default class HabitController {
       ];
       const presentDay = days[now.getDay()];
 
+      
       //Week start date
       let weekStartDate = new Date();
       weekStartDate.setDate(weekStartDate.getDate() - 7);
       const weekStartDayName = days[weekStartDate.getDay()];
-      weekStartDate = new Date(new Date(weekStartDate).getDate() + 1).getDate();
+      weekStartDate = new Date(weekStartDate).getDate() + 1;
+
+      // Get the month end date
+      let monthEndDate = new Date(year, month + 1, 0).getDate();
+
+      // Check if weekStartDate exceeds the month end date
+      if (weekStartDate > monthEndDate) {
+        weekStartDate = 1; // Reset to 1 if it exceeds
+      }
+
 
       //Get all the habits
       const result = await this.habitRepository.getAllHabits();
